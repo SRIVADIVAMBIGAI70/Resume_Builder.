@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1>Resume Generator</h1>
+            <p>Create your professional resume in minutes</p>
+        </header>
+
+        <div id="formSection" class="section">
+            <form id="resumeForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobTitle">Job Title / Role *</label>
+                    <input type="text" id="jobTitle" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input type="text" id="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="summary">About Me / Professional Summary *</label>
+                    <textarea id="summary" rows="4" required></textarea>
+                </div>
+
+                <div class="form-section">
+                    <h3>Education</h3>
+                    <div id="educationList"></div>
+                    <button type="button" class="btn-secondary" onclick="addEducation()">+ Add Education</button>
+                </div>
+
+                <div class="form-section">
+                    <h3>Work Experience (Optional)</h3>
+                    <div id="experienceList"></div>
+                    <button type="button" class="btn-secondary" onclick="addExperience()">+ Add Work Experience</button>
+                </div>
+
+                <div class="form-section">
+                    <h3>Skills</h3>
+                    <div class="form-group">
+                        <label for="skills">Enter skills (comma-separated) *</label>
+                        <textarea id="skills" rows="3" placeholder="e.g., JavaScript, React, Node.js, Python" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Custom Sections (Optional)</h3>
+                    <p class="section-hint">Add any additional sections like Achievements, Awards, Certifications, etc.</p>
+                    <div id="customBlocksList"></div>
+                    <button type="button" class="btn-secondary" onclick="addCustomBlock()">+ Add Custom Section</button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Generate Resume</button>
+                    <button type="button" class="btn-secondary" onclick="loadFromStorage()">Load Saved Data</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="previewSection" class="section" style="display: none;">
+            <div class="preview-actions">
+                <button class="btn-secondary" onclick="backToForm()">← Edit Resume</button>
+                <button class="btn-primary" onclick="downloadPDF()">Download PDF</button>
+            </div>
+
+            <div id="resumePreview" class="resume-container">
+                <div class="resume-header">
+                    <h1 id="preview-name"></h1>
+                    <h2 id="preview-title"></h2>
+                    <div class="contact-info">
+                        <span id="preview-phone"></span>
+                        <span class="divider">|</span>
+                        <span id="preview-email"></span>
+                        <span class="divider">|</span>
+                        <span id="preview-location"></span>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3 class="section-title">About Me</h3>
+                    <p id="preview-summary"></p>
+                </div>
+
+                <div class="resume-section">
+                    <h3 class="section-title">Education</h3>
+                    <div id="preview-education"></div>
+                </div>
+
+                <div class="resume-section">
+                    <h3 class="section-title">Work Experience</h3>
+                    <div id="preview-experience"></div>
+                </div>
+
+                <div class="resume-section">
+                    <h3 class="section-title">Skills</h3>
+                    <p id="preview-skills" class="skills-grid"></p>
+                </div>
+
+                <div id="preview-custom-blocks"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
